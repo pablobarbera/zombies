@@ -156,7 +156,7 @@ getCoordinates <- function(location, yahooID){
         }
         else {
 
-        }
+        
                 url <- paste("http://where.yahooapis.com/geocode?location=", lat, "+", lon, 
                 "&gflags=R&appid=", yahooID, sep="")
                 data.url <- getURL(url)
@@ -168,12 +168,12 @@ getCoordinates <- function(location, yahooID){
                 if (length(r)>5 & length(r)<8){ 
                     country <-  xmlValue(r[[6]][["country"]])
                     cat(location, ":", country, "\n")
-                    return (country)
-                }
+                    if (length(country)>0) {return (country)} else {return(NA)}
+                } else {return(NA)}
+            }
         }
-        else {return(NA)}
+     else {return(NA)}
 }
-
 
 
 #==============================================================================
